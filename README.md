@@ -1,4 +1,4 @@
-# ShakeDete
+# ShakeDetector
 Helpfully application for make the right decision in your life;)
 
 Built using JavaRX and retrolambda.
