@@ -3,9 +3,12 @@ package bohdan.sushchak.shakedetector;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+
+import java.util.Objects;
 
 import rx.Observable;
 import rx.Subscription;
@@ -22,7 +25,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle(R.string.toolbarTitle);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.toolbarTitle);
+
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.flags |= WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
+        params.screenBrightness = 0;
+        getWindow().setAttributes(params);
 
         textView = findViewById(R.id.tvAnswer);
         magicBallLayout = findViewById(R.id.magicBallLayout);
