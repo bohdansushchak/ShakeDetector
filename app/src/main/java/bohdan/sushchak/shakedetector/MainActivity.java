@@ -1,8 +1,10 @@
 package bohdan.sushchak.shakedetector;
 
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import rx.Observable;
@@ -36,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void shacked(String answer) {
+
+        Animation shakeAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.shake);
+        long duration = shakeAnim.getDuration();
+        magicBallLayout.startAnimation(shakeAnim);
+
+        Animation showText = AnimationUtils.loadAnimation(MainActivity.this, R.anim.show_text);
+        showText.setStartOffset(duration);
+        textView.startAnimation(showText);
         textView.setText(answer);
     }
 
